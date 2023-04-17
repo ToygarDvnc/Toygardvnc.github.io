@@ -1,10 +1,181 @@
- <!DOCTYPE html>
-<html>
-<title>HTML Tutorial</title>
-<body>
+<!DOCTYPE html>
+<html lang="en-US">
 
-<h1>This is a heading</h1>
-<p>This is a paragraph.</p>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,maximum-scale=2">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/css/style.css?v=aab8b634c9a599fb71ce82278ce9694c99519715">
+  </head>
 
-</body>
-</html> 
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          
+
+          <h1 id="project_title">adr.github.io</h1>
+          <h2 id="project_tagline">Homepage of the ADR GitHub organization</h2>
+
+          
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1 id="architectural-decision-records-adrs">Architectural Decision Records (ADRs)</h1>
+
+<p>An <a href="https://en.wikipedia.org/wiki/Architectural_decision">Architectural Decision (AD)</a> is a justified software design choice that addresses a functional or non-functional requirement that is architecturally significant.
+An <a href="https://en.wikipedia.org/wiki/Architecturally_significant_requirements">Architecturally Significant Requirement (ASR)</a> is a requirement that has a measurable effect on a software system’s architecture and quality.
+An <em>Architectural Decision Record (ADR)</em> captures a single AD and its rationale;
+the collection of ADRs created and maintained in a project constitute its <em>decision log</em>.
+All these are within the topic of Architectural Knowledge Management (AKM), but ADR usage can be extended to design and other decisions (“any decision record”).</p>
+
+<p>The aim of the <a href="http://github.com/adr">GitHub adr organization</a> is to:</p>
+
+<ol>
+  <li>Motivate the need for and benefits of AD capturing and establish a common vocabulary</li>
+  <li>Strengthen the tooling around ADRs, in support of agile practices as well as iterative and incremental software engineering processes</li>
+  <li>Provide pointers to public knowledge in the context of AKM and ADRs</li>
+</ol>
+
+<!-- > Note: The term "architecture decision record" can be used interchangeably. -->
+
+<h2 id="adrs-in-the-media">ADRs in the Media</h2>
+
+<ul>
+  <li><a href="https://ieeexplore.ieee.org/document/9801811">Love Unrequited: The Story of Architecture, Agile, and How Architecture Decision Records Brought Them Together</a>, Michael Keeling in the Pragmatic Designer column of IEEE Software Vol. 39 Issue 4 (2022) (<a href="https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=9801811">PDF</a>)</li>
+  <li>(German) <a href="https://www.heise.de/hintergrund/Gut-dokumentiert-Architecture-Decision-Records-4664988.html">Gut dokumentiert: Architecture Decision Records</a> by <a href="https://github.com/obfischer">@obfischer</a> published at <a href="https://www.heise.de/">heise online</a>.</li>
+  <li><em>(December 2022):</em> Chapter 3 of “Patterns for API Design” in the Addison Wesley Signature Series at Pearson will feature six narratives guiding through the conceptual level of API design: 29 recurring decisions with  options and criteria. Learn <a href="https://ozimmer.ch/patterns/2022/08/25/PfADBookNews.html">more</a>.</li>
+</ul>
+
+<h2 class="long" id="lightweight-adrs-should-be-adopted">Lightweight ADRs Should be Adopted</h2>
+
+<p><a href="https://www.thoughtworks.com/">ThoughtWorks</a> lists architectural decision records as “adopt” at their <a href="https://assets.thoughtworks.com/assets/technology-radar-vol-18-en.pdf">technology radar vol. 18</a>: <a href="https://www.thoughtworks.com/en-us/radar/techniques/lightweight-architecture-decision-records">https://www.thoughtworks.com/en-us/radar/techniques/lightweight-architecture-decision-records</a>.</p>
+
+<p>A “lightweight” ADR consists of <a href="https://github.com/joelparkerhenderson/architecture-decision-record/blob/main/templates/decision-record-template-by-michael-nygard/index.md">title, status, context, decision, and consequences</a> (according to <a href="https://github.com/mtnygard">@mtnygard</a>).</p>
+
+<p>We think that the considered options with their pros and cons are crucial to understand the reason of a chosen option. <a href="https://adr.github.io/madr/">MADR</a> — The Markdown Any/Architecture Decision Records (MADR: <code class="language-plaintext highlighter-rouge">[ˈmæɾɚ]</code>) in this ADR organization includes such tradeoff analysis information.</p>
+
+<h2 id="relation-of-adrs-madr-and-others">Relation of ADRs, MADR, and Others</h2>
+
+<p><img src="/ADR.png" alt="ADR" /></p>
+
+<h2 id="sustainable-architectural-decisions">Sustainable Architectural Decisions</h2>
+
+<p>We base our work on the guidelines and principles in <a href="https://www.infoq.com/articles/sustainable-architectural-design-decisions">Sustainable Architectural Decisions</a> by Zdun et al., for instance the Y-statement format suggested in that article.
+However, we are open to other formats of ADRs as shown at <a href="https://github.com/joelparkerhenderson/architecture_decision_record">@joelparkerhenderson’s repository</a>.</p>
+
+<p>In short, the Y-statement is as follows:</p>
+
+<blockquote>
+  <p>In the context of <code class="language-plaintext highlighter-rouge">&lt;use case/user story u&gt;</code>, facing <code class="language-plaintext highlighter-rouge">&lt;concern c&gt;</code> we decided for <code class="language-plaintext highlighter-rouge">&lt;option o&gt;</code> to achieve <code class="language-plaintext highlighter-rouge">&lt;quality q&gt;</code>, accepting <code class="language-plaintext highlighter-rouge">&lt;downside d&gt;</code>.</p>
+</blockquote>
+
+<p>The long form of it is as follows (extra section “because”):</p>
+
+<blockquote>
+  <p>In the context of <code class="language-plaintext highlighter-rouge">&lt;use case/user story u&gt;</code>,
+facing <code class="language-plaintext highlighter-rouge">&lt;concern c&gt;</code>
+we decided for <code class="language-plaintext highlighter-rouge">&lt;option o&gt;</code>
+and neglected <code class="language-plaintext highlighter-rouge">&lt;other options&gt;</code>,
+to achieve <code class="language-plaintext highlighter-rouge">&lt;system qualities/desired consequences&gt;</code>,
+accepting <code class="language-plaintext highlighter-rouge">&lt;downside d/undesired consequences&gt;</code>,
+because <code class="language-plaintext highlighter-rouge">&lt;additional rationale&gt;</code>.</p>
+</blockquote>
+
+<p>You can find more explanations and examples on Medium <a href="https://medium.com/@docsoc/y-statements-10eb07b5a177">Y-Statements - A Light Template for Architectural Decision Capturing</a>.</p>
+
+<p><a href="https://www.ozimmer.ch/practices/2020/05/22/ADDefinitionOfDone.html">A Definition of Done for Architectural Decision Making</a> proposes five criteria and a checklist to decide when it is time to set the status of a single decision to “done”: evidence, criteria and alternatives, agreement, documentation, and realization/review plan. Here, we focus on the ‘D’ in <em>ecADR</em>.</p>
+
+<h2 id="existing-adr-templates">Existing ADR Templates</h2>
+
+<ul>
+  <li>Overview: <a href="https://github.com/joelparkerhenderson/architecture_decision_record">Architectural Decision Records</a>: collection of markdown templates converted to Markdown</li>
+  <li><a href="https://adr.github.io/madr/">MADR</a>: The Markdown Architecture Decision Records (MADR: <code class="language-plaintext highlighter-rouge">[ˈmæɾɚ]</code>). Lean ADRs to quickly document architectural decisions in code. - Slogan: architectural decisions that <a href="https://en.wiktionary.org/wiki/matter#Pronunciation">matter <code class="language-plaintext highlighter-rouge">[ˈmæɾɚ]</code></a>.</li>
+  <li>Comparison of seven templates: <a href="http://www.ifs.hsr.ch/fileadmin/user_upload/customers/ifs.hsr.ch/Home/projekte/ADMentor-WICSA2015ubmissionv11nc.pdf">Architectural Decision Guidance Across Projects - Problem Space Modeling, Decision Backlog Management and Cloud Computing Knowledge</a>. WICSA 2015: 85-94.</li>
+  <li>Context, background and examples of good and bad justifications can be found in <a href="https://www.ozimmer.ch/practices/2020/04/27/ArchitectureDecisionMaking.html">this blog post</a>.</li>
+  <li><a href="https://schubmat.github.io/DecisionCapture/">DecisionCapture</a>: Templates for agile projects and explanation of the ADR universe, with <a href="https://github.com/schubmat/DecisionCapture/blob/master/samples/samples_simpleTemplate_secondSprint.md">example</a>.</li>
+  <li>cards42 has adopted the Y-statement template in its German <a href="https://cards42.org#adr">ADR card</a>; the English version is similar, but adds state information.</li>
+  <li>The <a href="http://www.iso-architecture.org/42010/templates/">template</a> for <a href="https://en.wikipedia.org/wiki/ISO/IEC_42010">ISO/IEC/IEEE 42010:2011</a>, the international standard for architecture descriptions of systems and software, suggests nine information items for ADRs its Appendix A. It also identifies areas to consider when identifying key decisions.</li>
+</ul>
+
+<h2 id="decision-capturing-tools">Decision Capturing Tools</h2>
+
+<ul>
+  <li><a href="https://adr.github.io/adr-manager/#/">adr-manager</a>: Craft MADR 2.x templates directly in the Web Browser.</li>
+  <li><a href="https://github.com/npryce/adr-tools">adr-tools</a> - bash scripts to manage ADRs in the <a href="https://cognitect.com/blog/2011/11/15/documenting-architecture-decisions.html">Nygard format</a>. <a href="https://github.com/npryce/adr-tools/blob/master/doc/adr/0002-implement-as-shell-scripts.md">example</a>.
+    <ul>
+      <li>Ansible script to install adr-tools: <a href="https://github.com/escalate/ansible-adr-tools">ansible-adr-tools</a></li>
+      <li>C# rewrite: <a href="https://github.com/GingerTommy/adr-cli">adr-cli</a></li>
+      <li>Go rewrite: <a href="https://github.com/marouni/adr">adr</a></li>
+      <li>Java rewrite: <a href="https://github.com/adoble/adr-j">adr-j</a></li>
+      <li>Node.js rewrite: <a href="https://github.com/phodal/adr">adr</a></li>
+      <li>PHP version: <a href="https://github.com/globtec/phpadr">phpadr</a></li>
+      <li>Powershell module: <a href="https://github.com/rdagumampan/adr-ps">adr-ps</a></li>
+      <li>Python rewrite: <a href="https://pypi.org/project/adr-tools-python/">adr-tools-python</a></li>
+      <li>Another Powershell module: <a href="https://github.com/ajoberstar/ArchitectureDecisionRecords">ArchitectureDecisionRecords</a></li>
+    </ul>
+  </li>
+  <li><a href="https://github.com/mrwilson/adr-viewer">adr-viewer</a> - python application to generate a website from a set of ADRs.</li>
+  <li><a href="https://github.com/cspray/architectural-decision">architectural-decision</a>: PHP library to create ADRs using PHP8 Attributes.</li>
+  <li><a href="https://adr.github.io/e-adr/">Embedded Architectural Decision Records</a>, which shows how a distributed AD log can be embedded in Java Code via ADR annotations.</li>
+  <li><a href="https://github.com/thomvaill/log4brains">Log4brains</a>: CLI and web UI to log and publish your ADRs as a static website</li>
+  <li><a href="https://loqbooq.app">Loqbooq</a>: Web App with Slack integration to record ADR-inspired decision logs</li>
+</ul>
+
+<h4 id="tooling-related-to-architecture-management">Tooling related to architecture management</h4>
+
+<ul>
+  <li><a href="https://github.com/TNG/ArchUnit">ArchUnit</a>: unit tests for architecture</li>
+  <li><a href="https://doctoolchain.github.io/docToolchain/">docToolchain</a>: docToolchain is an implementation of the <a href="http://www.writethedocs.org/guide/docs-as-code/">docs-as-code</a> approach for software architecture plus some additional automation.</li>
+  <li><a href="https://www.structurizr.com/">Structurizr</a>: Structurizr is a collection of tooling to help you visualise, document and explore your software architecture using the <a href="https://c4model.com/">C4 model</a>.</li>
+</ul>
+
+<h4 id="interesting-but-unmaintained-tooling">Interesting, but unmaintained tooling</h4>
+
+<ul>
+  <li><a href="https://github.com/adr/adr-log">adr-log</a>: Generates a architectural decision log out of MADRs.</li>
+  <li><a href="https://github.com/IFS-HSR/ADMentor">ADMentor</a> Architectural Decision Modeling Add-In for <a href="https://www.sparxsystems.de/uml/neweditions/">Sparx Enterprise Architect</a></li>
+  <li><a href="https://adr.github.io/eadlsync/">eadlsync</a>: Synchronizes embedded architectural decision records with a repository of architectural decisions.</li>
+  <li><a href="https://github.com/adr/serepo">SE Repo</a>: Software Engineering Repository. A repository for versioning software engineering artifacts, which can be architectural decisions, patterns, and others.</li>
+</ul>
+
+<h3 id="more-information">More Information</h3>
+
+<ul>
+  <li><a href="https://www.ozimmer.ch/practices/2020/04/27/ArchitectureDecisionMaking.html">Architectural Decisions — The Making Of</a> - provides some history on architecture decision records.</li>
+  <li><a href="https://openpracticelibrary.com/practice/architectural-decision-records-adr/">Architectural Decision Records (ADR): Open &amp; Transparent Decision History</a> in the Open Practice Library</li>
+  <li>An AWS Prescriptive Guidance recommends <a href="https://docs.aws.amazon.com/prescriptive-guidance/latest/architectural-decision-records/welcome.html">using architectural decision records to streamline technical decision-making for a software development project</a>.</li>
+  <li><a href="https://www.ost.ch/de/forschung-und-dienstleistungen/informatik/ifs-institut-fuer-software/labs/cloud-application-lab/architectural-knowledge-management-akm">Architectural Knowledge Management (AKM) overview</a> at OST</li>
+  <li><a href="https://cognitect.com/blog/2011/11/15/documenting-architecture-decisions.html">Documenting Architecture Decisions</a> by Michael Nygard</li>
+  <li><a href="https://resources.sei.cmu.edu/library/asset-view.cfm?assetid=497744">Architecture Decision Records in Action by Michael Keeling (IBM Watson Group) and Joe Runde (IBM)</a> - presentation including empirical numbers.</li>
+  <li><a href="https://www.fabian-keller.de/blog/documenting-architecture-decisions">Documenting Architecture Decisions</a> - Blog entry by Fabian Keller</li>
+  <li><a href="https://medium.com/olzzio/from-architectural-decisions-to-design-decisions-f05f6d57032b">From Architectural Decisions to Design Decisions</a> and <a href="https://medium.com/olzzio/adr-any-decision-record-916d1b64b28d">ADR = Any Decision Record?</a> - two blog posts by Olaf Zimmermann proposing to exted the scope of ADRs.</li>
+  <li>Method selection and tailoring in DPR, the <a href="https://socadk.github.io/design-practice-repository/">Design Practice Repository (DPR)</a> on GitHub and the <a href="https://leanpub.com/dpr">Design Practice Reference</a>, a corresponding LeanPub e-Book. Architectural decision capturing is positioned as one of the essential activities in DPR.</li>
+</ul>
+
+<!-- - [Work by Daniel Popescu](https://scholar.google.com/citations?user=dASv28sAAAAJ) -->
+
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.0/anchor.js"></script>
+        <script>
+        anchors.options.placement = 'left';
+        anchors.add();
+        </script>
+    
+  </body>
